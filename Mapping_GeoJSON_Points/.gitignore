@@ -1,0 +1,8 @@
+# Ignore the config.js file.
+config.js
+
+# Ignore Apple settings file.
+.DS_Store
+
+# Ignore terminal port initiation file.
+port 8000.py
