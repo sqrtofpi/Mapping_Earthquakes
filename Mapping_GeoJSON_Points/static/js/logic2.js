@@ -1,10 +1,8 @@
-// Creating map object
+// Add console.log to check to see if our code is working.
+console.log("working");
 
 // Create the map object with center at the San Francisco airport.
 let map = L.map('mapid').setView([37.5, -122.5], 10);
-
-// Coordinates for each point to be used in the polyline.
-// let laxFlights = laxRoutes;
 
 // Add GeoJSON data.
 let sanFranAirport =
@@ -28,22 +26,23 @@ let sanFranAirport =
 
 // Grabbing our GeoJSON data.
 L.geoJson(sanFranAirport, {
-    // We turn each feature into a Marker on the map.
-    pointToLayer: function(feature, latlng) {
-      console.log(feature);
-      return L.marker(latlng)
-      .bindPopup("<h2>" + feature.properties.city + "</h2>");
-    }
+  // We turn each feature into a Marker on the map.
+  pointToLayer: function(feature, latlng) {
+    console.log(feature);
+    return L.marker(latlng)
+    .bindPopup("<h2>" + feature.properties.city + "</h2>");
+  }
 
-  }).addTo(map);
+// IMPORTANT: Popups for markers do not work in the Safari Browser!
+
+}).addTo(map);
 
 // We create the tile layer that will be the background of our map.
-let graymap = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-	attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery (c) <a href="https://www.mapbox.com/">Mapbox</a>',
-	maxZoom: 18,
-	id: 'mapbox.streets',
-	accessToken: API_KEY
+let streets = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+    attribution: 'Map data © <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery (c) <a href="https://www.mapbox.com/">Mapbox</a>',
+    maxZoom: 18,
+    accessToken: API_KEY
 });
 
 // Then we add our 'graymap' tile layer to the map.
-graymap.addTo(map);
+streets.addTo(map);
