@@ -43,7 +43,8 @@ let torontoHoods = "https://raw.githubusercontent.com/sqrtofpi/Mapping_Earthquak
 // Create a style for the lines.
 let myStyle = {
   color: "blue",
-  weight: 1
+  weight: 1,
+  fillColor: "yellow"
 }
 
 // Grabbing our GeoJSON data.
